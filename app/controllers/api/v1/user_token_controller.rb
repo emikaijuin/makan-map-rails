@@ -1,6 +1,13 @@
 module Api
-  module v1
+  module V1
     class UserTokenController < Knock::AuthTokenController
+      def index
+        byebug
+        # return :json => {'hello': 'world'}
+      end
+
+      def create
+      end
     end
   end
 end
