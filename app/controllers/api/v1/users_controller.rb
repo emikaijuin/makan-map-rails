@@ -2,13 +2,13 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   def create
     user = User.new(user_params)
 
-    if user.save
-      message = "Saved user."
-    else
-      message = user.errors
-    end
+    message = if user.save
+                "Saved user."
+              else
+                user.errors
+              end
 
-    render :json => { "user": user, "message": message }
+    render json: { "user": user, "message": message }
   end
 
   private
