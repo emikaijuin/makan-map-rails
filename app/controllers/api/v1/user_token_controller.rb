@@ -3,9 +3,10 @@ module Api
     class UserTokenController < Knock::AuthTokenController
       skip_before_action :verify_authenticity_token, raise: false
 
+      private
+
       def user_params
-        # camel case from react state
-        params.require(:user).permit(:firstName, :lastName, :email, :password, :passwordConfirmation)
+        params.require(:user).permit(:email, :password)
       end
     end
   end
