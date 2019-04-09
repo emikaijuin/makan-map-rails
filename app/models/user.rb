@@ -11,4 +11,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  has_many :listing_users
+  has_many :listings, through: :listing_users
 end
