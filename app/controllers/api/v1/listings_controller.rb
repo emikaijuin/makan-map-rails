@@ -1,4 +1,4 @@
-class ListingsController < ApplicationController
+class Api::V1::ListingsController < Api::V1::ApplicationController
   before_action :set_listing, only: [:show, :update, :destroy]
 
   # GET /listings
@@ -46,6 +46,6 @@ class ListingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def listing_params
-      params.fetch(:listing, {})
+      params.require(:listing).permit(:name, :address, :secondary_address, :city, :state, :zip_code, :country, :type)
     end
 end
