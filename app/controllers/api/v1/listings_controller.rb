@@ -3,7 +3,8 @@ class Api::V1::ListingsController < Api::V1::ApplicationController
 
   # GET /listings
   def index
-    @listings = Listing.all
+    bounds = JSON.parse(params[:bounds])
+    @listings = Listing.within_bounds(bounds)
 
     render json: @listings
   end
@@ -39,13 +40,14 @@ class Api::V1::ListingsController < Api::V1::ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_listing
-      @listing = Listing.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def listing_params
-      params.require(:listing).permit(:name, :address, :secondary_address, :city, :state, :zip_code, :country, :type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def listing_params
+    params.require(:listing).permit(:name, :address, :secondary_address, :city, :state, :zip_code, :country, :type)
+  end
 end
