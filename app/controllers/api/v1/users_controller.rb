@@ -10,7 +10,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
       status = 400
     end
 
-    render json: { "user": user, "message": message}, status: status
+    render json: { "user": user, "message": message }, status: status
   end
 
   private

@@ -4,6 +4,14 @@ class Listing < ApplicationRecord
 
   after_create :create_coordinates
 
+  scope :within_bounds, ->(bounds) {
+                          where("latitude < ? AND latitude > ? AND longitude > ? AND longitude < ?",
+                                bounds.dig("nw", "lat"),
+                                bounds.dig("sw", "lat"),
+                                bounds.dig("nw", "lng"),
+                                bounds.dig("ne", "lng"))
+                        }
+
   def create_coordinates
     response = HTTParty.get(
       'https://maps.googleapis.com/maps/api/geocode/json?' +
