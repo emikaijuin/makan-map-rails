@@ -12,7 +12,7 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create listing" do
     assert_difference('Listing.count') do
-      post listings_url, params: { listing: {  } }, as: :json
+      post listings_url, params: { listing: {} }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update listing" do
-    patch listing_url(@listing), params: { listing: {  } }, as: :json
+    patch listing_url(@listing), params: { listing: {} }, as: :json
     assert_response 200
   end
 
